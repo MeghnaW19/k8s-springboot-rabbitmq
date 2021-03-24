@@ -1,0 +1,26 @@
+package com.stackroute.service;
+
+import com.stackroute.domain.Employee;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
+import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
+import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Component
+public class RabbitMqService implements RabbitListenerConfigurer {
+
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMqService.class);
+
+    @RabbitListener(queues = "${app.rabbitmq.queue}")
+    public void recievedMessage(Employee employee) {
+        logger.info("Recieved employee details" + employee);
+
+    }
+
+    @Override
+    public void configureRabbitListeners(RabbitListenerEndpointRegistrar rabbitListenerEndpointRegistrar) {
+
+    }
+}

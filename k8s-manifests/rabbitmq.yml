@@ -1,0 +1,12 @@
+#Define service of type NodePort to expose the management HTTP port on each node and name it as rabbitmq-management
+---
+apiVersion: v1
+
+---
+#Define the required headless service for StatefulSets and name it as rabbitmq
+apiVersion: v1
+
+
+---
+#Define RabbitMQ StatefulSet using `rabbitmq:3.7.5-management` image configuring service and replicas.
+apiVersion: apps/v1
